@@ -1,0 +1,14 @@
+{
+  "name": "webpack-test",
+  "description": "Webpack test project",
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-size": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "run-sequence": "^1.1.5",
+    "webpack-stream": "^3.1.0"
+  }
+}
