@@ -10,9 +10,13 @@ import webpackConfig from './webpack.config';
 
 const $          = plugins();
 const production = !!$.util.env.production;
+const copyFiles  = [
+  './source/**/*',
+  '!./source/js/**/*'
+];
 
 gulp.task('default', cb => {
-  runSequence('clean', 'scripts', cb);
+  runSequence('clean', 'scripts', 'copy', cb);
 });
 
 gulp.task('scripts', cb => {
@@ -26,5 +30,7 @@ gulp.task('scripts:main', () => {
     .pipe($.size({ title: 'Main bundle' }))
     .pipe(gulp.dest('build/js'));
 });
+
+gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 
 gulp.task('clean', () => del('build'));
