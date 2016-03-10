@@ -5,6 +5,7 @@ import del           from 'del';
 import runSequence   from 'run-sequence';
 import webpack       from 'webpack-stream';
 import named         from 'vinyl-named';
+import browserSync   from 'browser-sync';
 import pkg           from './package';
 import webpackConfig from './webpack.config';
 
@@ -34,3 +35,19 @@ gulp.task('scripts:main', () => {
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
 
 gulp.task('clean', () => del('build'));
+
+gulp.task('serve', () => {
+  browserSync.init({
+    server: {
+      baseDir: './build'
+    }
+  });
+
+  gulp.watch('./source/js/**/*.{js,jsx}', () => {
+    runSequence('scripts', browserSync.reload);
+  });
+
+  gulp.watch(copyFiles, () => {
+    runSequence('copy', browserSync.reload);
+  });
+});
