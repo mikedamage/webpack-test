@@ -10,7 +10,7 @@ let progress = new ProgressBar('[:bar] :percent', { total: 100 });
 
 const webpackConfig = {
   resolve: {
-    root: path.join(__dirname, 'source/js'),
+    root: path.join(__dirname, 'source', 'js'),
     extensions: [
       '',
       '.webpack.js',
@@ -18,6 +18,19 @@ const webpackConfig = {
       '.js',
       '.jsx'
     ]
+  },
+  entry: {
+    home: './source/js/home',
+    page2: './source/js/page2',
+    vendor: [
+      'lodash',
+      'react',
+      'react-dom'
+    ]
+  },
+  output: {
+    path: path.join(__dirname, 'build', 'js'),
+    filename: '[name].js'
   },
   module: {
     loaders: [
@@ -40,8 +53,8 @@ const webpackConfig = {
       progress.update(percent);
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'main-commons',
-      chunks: [ 'main' ]
+      name: 'vendor',
+      minChunks: Infinity
     })
   ]
 };
