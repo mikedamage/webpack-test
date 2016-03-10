@@ -38,6 +38,10 @@ const webpackConfig = {
     new webpack.BannerPlugin('Copyright (C) 2016, ePublishing, Inc.'),
     new webpack.ProgressPlugin((percent, msg) => {
       progress.update(percent);
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'main-commons',
+      chunks: [ 'main' ]
     })
   ]
 };
