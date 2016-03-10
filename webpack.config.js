@@ -4,7 +4,8 @@ import path        from 'path';
 import uglifyConf  from './uglify-config';
 import ProgressBar from 'progress';
 
-const production = !!gutil.env.production;
+const production   = !!gutil.env.production;
+const node_modules = path.join(__dirname, 'node_modules');
 
 let progress = new ProgressBar('[:bar] :percent', { total: 100 });
 
@@ -28,7 +29,8 @@ let webpackConfig = {
       '.web.js',
       '.js',
       '.jsx'
-    ]
+    ],
+    alias: {}
   },
   entry: {
     home: './source/js/home',
@@ -69,6 +71,8 @@ let webpackConfig = {
   ]
 };
 
-production && webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyConf));
+if (production) {
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyConf));
+}
 
 export default webpackConfig;
