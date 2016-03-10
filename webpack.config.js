@@ -8,7 +8,7 @@ const production = !!gutil.env.production;
 
 let progress = new ProgressBar('[:bar] :percent', { total: 100 });
 
-const webpackConfig = {
+let webpackConfig = {
   resolve: {
     root: path.join(__dirname, 'source', 'js'),
     extensions: [
