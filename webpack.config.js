@@ -65,9 +65,6 @@ let webpackConfig = {
   ]
 };
 
-if (production) {
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyConf));
-  webpackConfig.plugins.push(new webpack.optimize.DedupePlugin());
-}
+production && webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyConf));
 
 export default webpackConfig;
