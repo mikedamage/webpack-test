@@ -4,6 +4,7 @@ import path          from 'path';
 import del           from 'del';
 import runSequence   from 'run-sequence';
 import webpack       from 'webpack-stream';
+import named         from 'vinyl-named';
 import pkg           from './package';
 import webpackConfig from './webpack.config';
 
@@ -20,6 +21,7 @@ gulp.task('scripts', cb => {
 
 gulp.task('scripts:main', () => {
   return gulp.src('./source/js/main.jsx')
+    .pipe(named())
     .pipe(webpack(webpackConfig))
     .pipe($.size({ title: 'Main bundle' }))
     .pipe(gulp.dest('build/js'));

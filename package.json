@@ -19,6 +19,7 @@
     "gulp-util": "^3.0.7",
     "progress": "^1.1.8",
     "run-sequence": "^1.1.5",
+    "vinyl-named": "^1.1.0",
     "webpack": "^1.12.14",
     "webpack-stream": "^3.1.0"
   },
