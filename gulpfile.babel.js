@@ -5,8 +5,6 @@ import path             from 'path';
 import del              from 'del';
 import runSequence      from 'run-sequence';
 import webpack          from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import named            from 'vinyl-named';
 import browserSync      from 'browser-sync';
 import pkg              from './package';
 import webpackConfig    from './webpack.config';
