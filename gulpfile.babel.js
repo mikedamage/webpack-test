@@ -15,7 +15,8 @@ const $          = plugins();
 const production = !!$.util.env.production;
 const copyFiles  = [
   './source/**/*',
-  '!./source/js/**/*',
+  '!./source/assets',
+  '!./source/assets/**/*',
   '!./source/css/**/*'
 ];
 

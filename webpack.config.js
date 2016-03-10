@@ -38,21 +38,22 @@ let bannerPlugin = new webpack.BannerPlugin('Copyright (C) 2016 ePublishing, Inc
 
 let webpackConfig = {
   resolve: {
-    root: path.join(__dirname, 'source', 'js'),
+    root: path.join(__dirname, 'source', 'assets'),
     extensions: [
       '',
       '.webpack.js',
       '.web.js',
       '.js',
-      '.jsx'
+      '.jsx',
+      '.scss'
     ],
     alias: {}
   },
   entry: {
     // Each output target needs an entry here that points Webpack to
     // a source script.
-    home: './source/js/home',
-    page2: './source/js/page2',
+    home: './source/assets/js/home',
+    page2: './source/assets/js/page2',
     vendor: [
       'lodash',
       'react',
@@ -61,7 +62,7 @@ let webpackConfig = {
   },
   output: {
     path: path.join(__dirname, 'build', 'js'), // Output directory where compiled chunks will be saved
-    filename: '[name].js' // Placeholders usable here include [name] and [hash]
+    filename: '[name].js'                      // Placeholders usable here include [name] and [hash]
   },
   module: {
     loaders: [
