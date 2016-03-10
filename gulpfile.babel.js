@@ -25,7 +25,11 @@ gulp.task('default', cb => {
 gulp.task('scripts', cb => {
   webpack(webpackConfig, (err, stats) => {
     if (err) throw new $.util.PluginError('webpack', err);
-    $.util.log(stats.toString());
+    $.util.log(stats.toString({
+      colors: true,
+      children: false,
+      chunkModules: false
+    }));
     cb();
   });
 });
