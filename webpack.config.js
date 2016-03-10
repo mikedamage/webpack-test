@@ -6,10 +6,9 @@ import ProgressBar from 'progress';
 
 const production = !!gutil.env.production;
 
-let progress = new ProgressBar(':bar', { total: 100 });
+let progress = new ProgressBar('[:bar] :percent', { total: 100 });
 
 const webpackConfig = {
-  //watch: true,
   resolve: {
     root: path.join(__dirname, 'source/js'),
     extensions: [
@@ -40,7 +39,6 @@ const webpackConfig = {
     new webpack.ProgressPlugin((percent, msg) => {
       progress.update(percent);
     })
-    // TODO: Add webpack.ProgressPlugin with a nice progress bar
   ]
 };
 
