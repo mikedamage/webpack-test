@@ -15,11 +15,12 @@ const $          = plugins();
 const production = !!$.util.env.production;
 const copyFiles  = [
   './source/**/*',
-  '!./source/js/**/*'
+  '!./source/js/**/*',
+  '!./source/css/**/*'
 ];
 
 gulp.task('default', cb => {
-  runSequence('clean', 'scripts', 'copy', cb);
+  runSequence('clean', 'scripts', [ 'styles', 'copy' ], cb);
 });
 
 gulp.task('scripts', cb => {
@@ -32,6 +33,20 @@ gulp.task('scripts', cb => {
     }));
     cb();
   });
+});
+
+gulp.task('styles', () => {
+  return gulp.src('./source/css/**/*.scss')
+    .pipe($.sass({
+      precision: 10,
+      outputStyle: production ? 'compressed' : 'expanded',
+      includePaths: [
+        path.join(__dirname, 'source', 'css'),
+        path.join(__dirname, 'node_modules')
+      ]
+    }))
+    .pipe($.if(production, $.pleeease()))
+    .pipe(gulp.dest('./build/css'));
 });
 
 gulp.task('copy', () => gulp.src(copyFiles).pipe(gulp.dest('build')));
