@@ -8,6 +8,17 @@ const production = !!gutil.env.production;
 
 let progress = new ProgressBar('[:bar] :percent', { total: 100 });
 
+let progressPlugin = new webpack.ProgressPlugin((percent, msg) => {
+  progress.update(percent);
+});
+
+let commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
+  name: 'vendor',
+  minChunks: Infinity
+});
+
+let bannerPlugin = new webpack.BannerPlugin('Copyright (C) 2016 ePublishing, Inc.');
+
 let webpackConfig = {
   resolve: {
     root: path.join(__dirname, 'source', 'js'),
@@ -48,14 +59,9 @@ let webpackConfig = {
     ]
   },
   plugins: [
-    new webpack.BannerPlugin('Copyright (C) 2016, ePublishing, Inc.'),
-    new webpack.ProgressPlugin((percent, msg) => {
-      progress.update(percent);
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
-    })
+    bannerPlugin,
+    progressPlugin,
+    commonsChunkPlugin
   ]
 };
 
