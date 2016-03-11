@@ -66,7 +66,7 @@ let webpackConfig = {
   },
   output: {
     path: path.join(__dirname, 'build', 'js'), // Output directory where compiled chunks will be saved
-    filename: '[name].js'                      // Placeholders usable here include [name] and [hash]
+    filename: '[name].js'                      // Placeholders usable here include [name], [chunkhash] and [hash]
   },
   module: {
     loaders: [
