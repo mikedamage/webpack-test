@@ -16,3 +16,9 @@ gulp
 # Or, if you want to minify the output:
 gulp --production
 ```
+
+## Important files
+
++ [webpack.config.js](https://github.com/mikedamage/webpack-test/blob/master/webpack.config.js)
++ [gulpfile.babel.js](https://github.com/mikedamage/webpack-test/blob/master/gulpfile.babel.js)
+
