@@ -28,7 +28,12 @@ let progressPlugin = new webpack.ProgressPlugin((percent, msg) => {
 //
 // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
 let commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
+  // The name of the output bundle
   name: 'vendor',
+
+  // How many chunks a dependency needs to appear in before being moved to the
+  // commons chunk. Default is the number of entries in the `entry` section below.
+  // Set to Infinity to control what goes into commons manually.
   minChunks: Infinity
 });
 
