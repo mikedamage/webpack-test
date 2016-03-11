@@ -8,7 +8,6 @@
 import webpack     from 'webpack';
 import gutil       from 'gulp-util';
 import path        from 'path';
-import uglifyConf  from './uglify-config';
 import ProgressBar from 'progress';
 
 // This will be true if --production is passed to gulp, false otherwise
@@ -93,10 +92,5 @@ let webpackConfig = {
     commonsChunkPlugin // Create a vendor.js file with commonly used libraries instead of bundling them into each entry
   ]
 };
-
-if (production) {
-  // Minify output files. This adds several seconds to overall build time and results in much smaller files.
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyConf));
-}
 
 export default webpackConfig;

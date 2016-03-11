@@ -23,6 +23,10 @@ gulp.task('default', cb => {
 });
 
 gulp.task('scripts', cb => {
+  runSequence('scripts:webpack', 'scripts:uglify', cb);
+})
+
+gulp.task('scripts:webpack', cb => {
   webpack(webpackConfig, (err, stats) => {
     if (err) throw new $.util.PluginError('webpack', err);
     $.util.log(stats.toString({
@@ -33,6 +37,16 @@ gulp.task('scripts', cb => {
     cb();
   });
 });
+
+// Webpack has an uglifier plugin, but it's a lot slower than using gulp-uglify for some reason.
+// This task is tricky in that it modifies stuff that's already in the build folder. It runs no
+// matter what, but it only actually minifies code if --production is passed to gulp.
+gulp.task('scripts:uglify', () => {
+  return gulp.src('./build/js/**/*.js')
+    .pipe($.if(production, $.uglify()))
+    .pipe($.size({ title: 'JS' }))
+    .pipe(gulp.dest('./build/js'));
+})
 
 gulp.task('styles', () => {
   return gulp.src('./source/css/**/*.scss')
