@@ -53,6 +53,7 @@ let webpackConfig = {
     ],
     alias: {}
   },
+
   entry: {
     // Each output target needs an entry here that points Webpack to
     // a source script.
@@ -64,10 +65,17 @@ let webpackConfig = {
       'react-dom'
     ]
   },
+
   output: {
     path: path.join(__dirname, 'build', 'js'), // Output directory where compiled chunks will be saved
-    filename: '[name].js'                      // Placeholders usable here include [name], [chunkhash] and [hash]
+    filename: '[name].js',                     // Placeholders usable here include [name], [chunkhash] and [hash]
+    sourceMapFilename: '[file].map'            // Placeholders usable here include [file], [id] and [hash]
   },
+
+  // Enable a dev tool to make debugging easier.
+  // See https://webpack.github.io/docs/configuration.html#devtool
+  devtool: production ? false : 'source-map',
+
   module: {
     loaders: [
       // Load all JS files via Babel, compile ES2015 and React JSX to ES5
