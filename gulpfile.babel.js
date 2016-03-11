@@ -1,4 +1,3 @@
-import _                from 'lodash';
 import gulp             from 'gulp';
 import plugins          from 'gulp-load-plugins';
 import path             from 'path';
