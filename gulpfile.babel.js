@@ -82,7 +82,7 @@ gulp.task('serve', () => {
     }
   });
 
-  gulp.watch('./source/js/**/*.{js,jsx}', () => {
+  gulp.watch('./source/assets/js/**/*.{js,jsx,scss}', () => {
     runSequence('scripts', browserSync.reload);
   });
 
