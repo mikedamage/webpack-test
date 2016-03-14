@@ -63,6 +63,7 @@ gulp.task('styles', () => {
       ]
     }))
     .pipe($.if(production, $.pleeease()))
+    .pipe($.size({ title: 'CSS', showFiles: true }))
     .pipe(gulp.dest('./build/css'))
     .pipe(browserSync.stream());
 });
