@@ -40,6 +40,7 @@ let commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
 // Add copyright message to output files
 let bannerPlugin = new webpack.BannerPlugin('Copyright (C) 2016 ePublishing, Inc.');
 
+// Our main Webpack configuration object
 let webpackConfig = {
   resolve: {
     root: path.join(__dirname, 'source', 'assets'),

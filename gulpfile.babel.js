@@ -44,7 +44,7 @@ gulp.task('scripts:webpack', cb => {
 gulp.task('scripts:uglify', () => {
   return gulp.src('./build/js/**/*.js')
     .pipe($.if(production, $.uglify()))
-    .pipe($.size({ title: 'JS' }))
+    .pipe($.size({ title: 'JS', showFiles: true }))
     .pipe(gulp.dest('./build/js'));
 });
 
