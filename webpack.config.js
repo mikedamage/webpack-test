@@ -37,6 +37,7 @@ let commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
   minChunks: Infinity
 });
 
+
 // Add copyright message to output files
 let bannerPlugin = new webpack.BannerPlugin('Copyright (C) 2016 ePublishing, Inc.');
 
@@ -75,7 +76,7 @@ let webpackConfig = {
 
   // Enable a dev tool to make debugging easier.
   // See https://webpack.github.io/docs/configuration.html#devtool
-  devtool: production ? false : 'source-map',
+  devtool: 'source-map',
 
   module: {
     loaders: [
@@ -106,5 +107,11 @@ let webpackConfig = {
     commonsChunkPlugin // Create a vendor.js file with commonly used libraries instead of bundling them into each entry
   ]
 };
+
+if (production) {
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    mangle: true
+  }));
+}
 
 export default webpackConfig;
